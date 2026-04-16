@@ -42,6 +42,11 @@ function App() {
     </div>
   );
 }
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+
 const stories = [
   {
     title: "React",
@@ -54,7 +59,7 @@ const stories = [
   {
     title: "Redux",
     url: "https://redux.js.org/",
-    author: "Dan Abramov, Andrew Clark",
+    author: "Dan Abramov",
     num_comments: 2,
     points: 5,
     objectID: 1,
@@ -64,30 +69,49 @@ const stories = [
 function App() {
   return (
     <div>
-      <h1>My Hacker Stories</h1>
-
+      <Header/>
+      <Search/>
       <hr />
-
-      <ul>
-        {stories.map(function (item) {
-          return (
-            <li key={item.objectID}>
-              <span>
-                <a href={item.url}>{item.title}</a>
-              </span>
-              <span> Author: {item.author}</span>
-              <span> Comments: {item.num_comments}</span>
-              <span> Points: {item.points}</span>
-            </li>
-          );
-        })}
-      </ul>
+      <List />
     </div>
   );
 }
-
-
+function Header () {
+  return(
+<h1>My Hacker Stories</h1>
+  )
+}
+function Search () {
+  return (
+    <>
+  <label classname="search" htmlFor="search">search:</label>
+<input id="search" type="text"/> </>
+)}
+function List() {
+  return (
+    <ul>
+      {stories.map(function (item) {
+        return (
+          <li key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title}</a>
+            </span>
+            <span> Author: {item.author}</span>
+            <span> Comments: {item.num_comments}</span>
+            <span> Points: {item.points}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 /* Step 7 – Reflection
   - map(): Essential for turning data arrays into visual UI elements.
   - objectID: Best key because it's a permanent, unique ID from the database.
 export default App ;*/
+/*App now acts as the main container that organizes the structure of the application by rendering Header, Search, and List.
+List is responsible for looping through the stories array and displaying each story as a list item.
+
+Search renders the search label and input field */
+export default App ;
+
