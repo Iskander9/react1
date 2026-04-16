@@ -47,7 +47,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-const stories = [
+const list = [
   {
     title: "React",
     url: "https://reactjs.org/",
@@ -66,52 +66,56 @@ const stories = [
   },
 ];
 
-function App() {
-  return (
+const App = () => 
+  
     <div>
       <Header/>
       <Search/>
       <hr />
       <List />
     </div>
-  );
-}
-function Header () {
-  return(
+  ;
+
+const Header = () => 
 <h1>My Hacker Stories</h1>
-  )
-}
-function Search () {
+
+const  Search = () => {
+  const handleChange = (event) =>{
+    console.log(event)
+    console.log(event.target.value);
+  }
+  
   return (
-    <>
+  <>
   <label classname="search" htmlFor="search">search:</label>
-<input id="search" type="text"/> </>
-)}
-function List() {
-  return (
+  <input id="search" type="text" onChange={handleChange}/> </>
+  )
+} 
+
+const List = () => 
     <ul>
-      {stories.map(function (item) {
+      {list.map( (item) => {
         return (
           <li key={item.objectID}>
             <span>
               <a href={item.url}>{item.title}</a>
             </span>
-            <span> Author: {item.author}</span>
-            <span> Comments: {item.num_comments}</span>
-            <span> Points: {item.points}</span>
+            <span>  {item.author}</span>
+            <span>  {item.num_comments}</span>
+            <span>  {item.points}</span>
           </li>
         );
       })}
     </ul>
-  );
-}
+  ;
+
 /* Step 7 – Reflection
   - map(): Essential for turning data arrays into visual UI elements.
   - objectID: Best key because it's a permanent, unique ID from the database.
 export default App ;*/
-/*App now acts as the main container that organizes the structure of the application by rendering Header, Search, and List.
+/* session 3 : App now acts as the main container that organizes the structure of the application by rendering Header, Search, and List.
 List is responsible for looping through the stories array and displaying each story as a list item.
 
-Search renders the search label and input field */
-export default App ;
+Search renders the search label and input field */ 
 
+export default App ;
